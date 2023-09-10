@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap"
+          rel="stylesheet">
+
+    <title>Weather App</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+
+        .background {
+            width: 393px;
+            height: 852px;
+            background: rgba(255, 255, 255, 1);
+            opacity: 1;
+            position: relative;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .gray_widget_weather_alert {
+            width: 355px;
+            height: 68px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 315px;
+            left: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_forecast {
+            width: 356px;
+            height: 143px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 393px;
+            left: 19px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_weather_alert {
+            width: 356px;
+            height: 143px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 393px;
+            left: 19px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_radar {
+            width: 218px;
+            height: 159px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 548px;
+            left: 19px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_press_dew_aqi {
+            width: 131px;
+            height: 159px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 548px;
+            left: 244px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_moon {
+            width: 218px;
+            height: 100px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 719px;
+            left: 18px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .gray_widget_climate {
+            width: 131px;
+            height: 100px;
+            background: rgba(217, 217, 217, 1);
+            opacity: 0.4000000059604645;
+            position: absolute;
+            top: 719px;
+            left: 243px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .luminosity_label {
+            width: 64px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 753px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moonrise_label2 {
+            width: 54px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 772px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moonrise_label {
+            width: 54px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 772px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moonset_label {
+            width: 50px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 791px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .partly_cloudy {
+            width: 180px;
+            height: 125px;
+            background: url("../images/partly_cloudy.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 85px;
+            left: 107px;
+            border: 0 solid rgba(0, 0, 0, 1);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .city {
+            width: 193px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 48px;
+            left: 98px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 24px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .time {
+            width: 53px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 11px;
+            left: 17px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .temperature {
+            width: 77px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 97px;
+            left: 158px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 48px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .condition {
+            width: 114px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 162px;
+            left: 139px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 18px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .wind_label {
+            width: 43px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 192px;
+            left: 24px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .wind_value {
+            width: 47px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 193px;
+            left: 116px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 15px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .feels_like_label {
+            width: 77px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 219px;
+            left: 24px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .hourly_forecast_label {
+            width: 53px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 396px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .pressure_label {
+            width: 68px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 556px;
+            left: 251px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moon_label_widget {
+            width: 44px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 725px;
+            left: 25px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .climate_label {
+            width: 61px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 724px;
+            left: 250px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .dew_point_label {
+            width: 81px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 602px;
+            left: 251px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .aqi_label {
+            width: 86px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 648px;
+            left: 252px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .seven_day_forecast_label {
+            width: 45px;
+            color: rgba(0, 0, 0, 0.20000000298023224);
+            position: absolute;
+            top: 396px;
+            left: 105px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .feels_like_value {
+            width: 24px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 220px;
+            left: 116px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 15px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .visibility_label {
+            width: 70px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 192px;
+            left: 234px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .weather_alert {
+            width: 224px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 322px;
+            left: 118px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .pressure_value {
+            width: 70px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 580px;
+            left: 252px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 14px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moon_luminosity_value {
+            width: 24px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 754px;
+            left: 104px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 11px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moonrise_value {
+            width: 49px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 773px;
+            left: 92px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 11px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moonset_value {
+            width: 42px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 792px;
+            left: 95px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 11px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .dew_point_value {
+            width: 22px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 627px;
+            left: 252px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 14px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .aqi_value {
+            width: 45px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 673px;
+            left: 252px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 14px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .dew_point_condition {
+            width: 38px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 628px;
+            left: 326px;
+            font-family: Nunito;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .aqi_condition {
+            width: 52px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 676px;
+            left: 312px;
+            font-family: Nunito;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .visibility_value {
+            width: 39px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 193px;
+            left: 326px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 15px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .weather_alert_addl {
+            width: 173px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            font-family: Nunito;
+            font-weight: Regular;
+            top: 345px;
+            left: 118px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .weather_alert_NWS {
+            width: 173px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            font-family: Nunito;
+            font-weight: 300;
+            font-size: 10px;
+            top: 365px;
+            left: 118px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .humidity_label {
+            width: 72px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 219px;
+            left: 234px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .humidity_value {
+            width: 32px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 220px;
+            left: 326px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 15px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .sunrise_label {
+            width: 48px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 247px;
+            left: 35px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .ten_am_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 26px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .ten_am_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 36px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .sunrise_value {
+            width: 47px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 248px;
+            left: 93px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .sunset_label {
+            width: 44px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 247px;
+            left: 165px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .sunset_value {
+            width: 46px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 248px;
+            left: 219px;
+            font-family: Nunito;
+            font-weight: Regular;
+            font-size: 12px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .moon_label {
+            width: 36px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 248px;
+            left: 290px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .eleven_am_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 91px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .eleven_am_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 101px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .noon_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 156px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .noon_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 166px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .one_pm_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 216px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .one_pm_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 226px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .one_pm_precip {
+            width: 31px;
+            color: rgba(29, 89, 102, 1);
+            position: absolute;
+            top: 515px;
+            left: 221px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .three_pm_precip {
+            width: 31px;
+            color: rgba(29, 89, 102, 1);
+            position: absolute;
+            top: 515px;
+            left: 333px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .three_pm_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 328px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .three_pm_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 338px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .noon_precip {
+            width: 31px;
+            color: rgba(29, 89, 102, 1);
+            position: absolute;
+            top: 515px;
+            left: 161px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .two_pm_hourly {
+            width: 41px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 423px;
+            left: 273px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .two_pm_temp {
+            width: 21px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 497px;
+            left: 283px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .two_pm_precip {
+            width: 31px;
+            color: rgba(29, 89, 102, 1);
+            position: absolute;
+            top: 515px;
+            left: 278px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .toggle_A {
+            width: 12px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 54px;
+            left: 354px;
+            font-family: Nunito;
+            font-weight: 900;
+            font-size: 15px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .headline {
+            width: 257px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 273px;
+            left: 68px;
+            font-family: Nunito;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 13px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .climate_temp {
+            width: 74px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 747px;
+            left: 292px;
+            font-family: Nunito;
+            font-style: normal;
+            font-size: 11px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .climate_precip {
+            width: 74px;
+            color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 785px;
+            left: 292px;
+            font-family: Nunito;
+            font-style: normal;
+            font-size: 11px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .radar_image {
+            width: 206px;
+            height: 148px;
+            background: url("../images/radar.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 555px;
+            left: 25px;
+            overflow: hidden;
+        }
+
+        .hamburger_icon {
+            width: 48px;
+            height: 48px;
+            background: url("../images/hamburger_icon.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 40px;
+            left: 24px;
+            overflow: hidden;
+        }
+
+        .toggle {
+            width: 60px;
+            height: 60px;
+            background: url("../images/toggle.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 34px;
+            left: 317px;
+            overflow: hidden;
+        }
+
+        .thunderstorm {
+            width: 56px;
+            height: 56px;
+            background: url("../images/thunderstorm.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 323px;
+            left: 28px;
+            overflow: hidden;
+        }
+
+        .warning {
+            width: 30px;
+            height: 30px;
+            background: url("../images/warning.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 351px;
+            left: 73px;
+            overflow: hidden;
+        }
+
+        .sunny {
+            width: 50px;
+            height: 50px;
+            background: url("../images/sunny.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 443px;
+            left: 21px;
+            overflow: hidden;
+        }
+
+        .sunny2 {
+            width: 50px;
+            height: 50px;
+            background: url("../images/sunny2.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 443px;
+            left: 86px;
+            overflow: hidden;
+        }
+
+        .cloudy {
+            width: 40px;
+            height: 40px;
+            background: url("../images/cloudy.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 448px;
+            left: 156px;
+            overflow: hidden;
+        }
+
+        .cloudy2 {
+            width: 40px;
+            height: 40px;
+            background: url("../images/cloudy2.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 448px;
+            left: 329px;
+            overflow: hidden;
+        }
+
+        .thunderstorm_hourly {
+            width: 40px;
+            height: 40px;
+            background: url("../images/thunderstorm_hourly.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 448px;
+            left: 216px;
+            overflow: hidden;
+        }
+
+        .thunderstorm_hourly2 {
+            width: 40px;
+            height: 40px;
+            background: url("../images/thunderstorm_hourly2.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 448px;
+            left: 273px;
+            overflow: hidden;
+        }
+
+        .waxing_crescent {
+            width: 80px;
+            height: 80px;
+            background: url("../images/waxing_crescent.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 731px;
+            left: 150px;
+            overflow: hidden;
+        }
+
+        .waxing_crescent2 {
+            width: 15px;
+            height: 15px;
+            background: url("../images/waxing_crescent2.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 249px;
+            left: 336px;
+            overflow: hidden;
+        }
+
+        .down_arrow {
+            width: 20px;
+            height: 20px;
+            background: url("../images/down_arrow.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 579px;
+            left: 344px;
+            overflow: hidden;
+        }
+
+        .temp_above_average {
+            width: 30px;
+            height: 30px;
+            background: url("../images/temp_above_avg.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 747px;
+            left: 255px;
+            overflow: hidden;
+        }
+
+        .wetter_average {
+            width: 30px;
+            height: 30px;
+            background: url("../images/wetter_average.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 784px;
+            left: 255px;
+            overflow: hidden;
+        }
+
+        .southeast_arrow {
+            width: 20px;
+            height: 20px;
+            background: url("../images/southeast_arrow.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 192px;
+            left: 83px;
+            overflow: hidden;
+        }
+
+        .wifi {
+            width: 20px;
+            height: 20px;
+            background: url("../images/wifi.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 9px;
+            left: 320px;
+            overflow: hidden;
+        }
+
+        .battery {
+            width: 30px;
+            height: 30px;
+            background: url("../images/battery.png") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 4px;
+            left: 350px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+<div
+        class="background">
+    <div class="gray_widget_weather_alert"></div>
+    <div class="gray_widget_forecast"></div>
+    <div class="gray_widget_weather_alert"></div>
+    <div class="gray_widget_radar"></div>
+    <div class="gray_widget_press_dew_aqi"></div>
+    <div class="gray_widget_moon"></div>
+    <div class="gray_widget_climate"></div>
+    <span class="luminosity_label">Luminosity</span><span class="moonrise_label2">Moonrise</span><span
+        class="moonrise_label">Moonrise</span><span class="moonset_label">Moonset</span>
+    <div class="partly_cloudy"></div>
+    <span class="city">Philadelphia, PA</span><span class="time">9:37 AM</span><span class="temperature">88°</span><span
+        class="condition">Partly Sunny</span><span class="wind_label">Wind</span><span
+        class="wind_value">9 MPH</span><span
+        class="feels_like_label">Feels Like</span><span class="hourly_forecast_label">Hourly</span><span
+        class="pressure_label">Pressure</span><span
+        class="moon_label_widget">Moon</span><span class="climate_label">Climate</span><span class="dew_point_label">Dew Point</span><span
+        class="aqi_label">Air Quality</span><span class="seven_day_forecast_label">7 Day </span><span
+        class="feels_like_value">93°</span><span
+        class="visibility_label">Visibility</span><span class="weather_alert">Severe Thunderstorm Watch</span><span
+        class="pressure_value">1023 mbar</span><span
+        class="moon_luminosity_value">30%</span><span class="moonrise_value">12:21 PM</span><span class="moonset_value">9:44 PM</span><span
+        class="dew_point_value">73°</span><span class="aqi_value">56 AQI</span><span
+        class="dew_point_condition">Muggy</span><span
+        class="aqi_condition">Moderate</span><span class="visibility_value">10 mi</span><span
+        class="weather_alert_addl">Until 1:30 PM EDT</span><span class="weather_alert_NWS">National Weather Service, Mount Holly</span><span
+        class="humidity_label">Humidity</span><span class="humidity_value">76%</span><span
+        class="sunrise_label">Sunrise</span><span class="ten_am_hourly">10 AM</span><span class="ten_am_temp">89°</span><span
+        class="sunrise_value">6:22 AM</span><span
+        class="sunset_label">Sunset</span><span class="sunset_value">7:27 PM</span><span class="moon_label">Moon</span>
+    <!--    <div class="v23_9"></div>-->
+    <span class="eleven_am_hourly">11 AM</span><span class="eleven_am_temp">90°</span><span
+        class="noon_hourly">12 PM</span><span class="noon_temp">90°</span><span
+        class="one_pm_hourly">1 PM</span><span class="one_pm_temp">90°</span><span class="one_pm_precip">60%</span><span
+        class="three_pm_precip">30%</span><span class="three_pm_hourly">3 PM</span><span
+        class="three_pm_temp">85°</span><span
+        class="noon_precip">30%</span><span class="two_pm_hourly">2 PM</span><span class="two_pm_temp">87°</span><span
+        class="two_pm_precip">80%</span><span class="toggle_A">A</span><span class="headline">A mix of sun and clouds, with thunderstorms
+developing in the afternoon.</span><span class="climate_temp">+7° warmer than average</span><span
+        class="climate_precip">+4.3in wetter than average</span>
+    <div class="radar_image"></div>
+    <div class="hamburger_icon"></div>
+    <div class="toggle"></div>
+    <div class="thunderstorm"></div>
+    <div class="warning"></div>
+    <div class="sunny"></div>
+    <div class="sunny2"></div>
+    <div class="cloudy"></div>
+    <div class="cloudy2"></div>
+    <div class="thunderstorm_hourly"></div>
+    <div class="thunderstorm_hourly2"></div>
+    <div class="waxing_crescent"></div>
+    <div class="waxing_crescent2"></div>
+    <div class="down_arrow"></div>
+    <div class="temp_above_average"></div>
+    <div class="wetter_average"></div>
+    <div class="southeast_arrow"></div>
+    <div class="wifi"></div>
+    <div class="battery"></div>
+</div>
+</body>
+</html>
